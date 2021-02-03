@@ -49,4 +49,13 @@ public class CakeEntity implements Serializable {
         this.image = image;
     }
 
+    @Override
+    public String toString() {
+        return "CakeEntity{" +
+                "employeeId=" + employeeId +
+                ", title='" + title + '\'' +
+                ", description='" + description + '\'' +
+                ", image='" + image + '\'' +
+                '}';
+    }
 }
