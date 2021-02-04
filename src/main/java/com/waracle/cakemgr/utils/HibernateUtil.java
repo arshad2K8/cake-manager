@@ -33,4 +33,8 @@ public class HibernateUtil {
         getSessionFactory().close();
     }
 
+    @Override
+    public void finalize() {
+        shutdown();
+    }
 }

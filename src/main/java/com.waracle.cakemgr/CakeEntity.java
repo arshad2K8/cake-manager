@@ -1,28 +1,33 @@
 package com.waracle.cakemgr;
 
+import org.hibernate.annotations.DynamicUpdate;
+
 import java.io.Serializable;
 
 import javax.persistence.*;
 
 @Entity
-@org.hibernate.annotations.Entity(dynamicUpdate = true)
-@Table(name = "Employee", uniqueConstraints = {@UniqueConstraint(columnNames = "ID"), @UniqueConstraint(columnNames = "EMAIL")})
+@DynamicUpdate
+@Table(name = "CAKES", uniqueConstraints = {@UniqueConstraint(columnNames = "ID"), @UniqueConstraint(columnNames = "TITLE")})
 public class CakeEntity implements Serializable {
 
     private static final long serialVersionUID = -1798070786993154676L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID", unique = true, nullable = false)
-    private Integer employeeId;
+    @SequenceGenerator(
+            name="CAKES_SEQUENCE_GENERATOR",
+            sequenceName="CAKES_SEQ"
+    )
+    @Id @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="CAKES_SEQUENCE_GENERATOR")
+    @Column(name = "ID")
+    private Integer cakeId;
 
-    @Column(name = "EMAIL", unique = true, nullable = false, length = 100)
+    @Column(name = "TITLE", unique = true, nullable = false, length = 100)
     private String title;
 
-    @Column(name = "FIRST_NAME", unique = false, nullable = false, length = 100)
+    @Column(name = "DESCRIPTION", nullable = false, length = 100)
     private String description;
 
-    @Column(name = "LAST_NAME", unique = false, nullable = false, length = 300)
+    @Column(name = "IMAGE", nullable = false, length = 300)
     private String image;
 
     public String getTitle() {
@@ -52,7 +57,7 @@ public class CakeEntity implements Serializable {
     @Override
     public String toString() {
         return "CakeEntity{" +
-                "employeeId=" + employeeId +
+                "cakeId=" + cakeId +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
                 ", image='" + image + '\'' +
