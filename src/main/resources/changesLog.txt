@@ -1,0 +1,5 @@
+1) Fixed /cakes endpoint
+
+2) Heavily refactored it to the point it causes less soreness to our eyes. (more to be done)
+
+3) Refactored home page which displays now cakes in tabular format in JSP
